@@ -1,0 +1,72 @@
+.current-city-component-wrapper {
+  width: 60%;
+  height: 480px;
+  margin: 30px auto 0;
+  color: white;
+
+  .main-row {
+    height: 100%;
+    margin: 0;
+
+    .basic-info-wrapper {
+      height: auto;
+      background-color: #00000059;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-blend-mode: color;
+
+      .basic-city-details {
+        margin-top: 15px;
+      }
+
+      .date-and-temperature {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        div:first-child {
+          h3 {
+            margin-bottom: 0;
+          }
+        }
+
+        div:last-child {
+          text-align: right;
+
+          .temp-unit {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+
+    .details-wrapper {
+      height: auto;
+      background-color: #00000052;
+
+      .big-icon {
+        img {
+          margin: 0 auto;
+        }
+      }
+
+      .temp-text {
+        margin-top: 15px;
+        margin-bottom: 40px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid white;
+      }
+
+      .next-hours-wrapper {
+        .hourly {
+          margin: 7px auto;
+          border-bottom: 1px solid lightgray;
+
+          .time, .temp {
+            padding-top: 25px;
+          }
+        }
+      }
+    }
+  }
+}

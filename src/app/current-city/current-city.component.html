@@ -1,0 +1,57 @@
+<div class="current-city-component-wrapper" *ngIf="currentWeather">
+  <div class="row main-row">
+    <div class="col-sm-7 basic-info-wrapper">
+      <div class="row text-right basic-city-details">
+        <div class="col-sm-12">
+          <h2>{{currentCity.EnglishName}}</h2>
+          <h3>{{currentCity.Country.EnglishName}}</h3>
+        </div>
+      </div>
+      <div class="row date-and-temperature">
+        <div class="col-sm-6">
+          <h3>{{currentDate | date: 'shortTime'}}</h3>
+          <p>{{currentDate | date}}</p>
+        </div>
+        <div class="col-sm-6">
+          <h1 *ngFor="let weather of currentWeather">
+            <span>{{weather.Temperature.Metric.Value}}&deg; </span>
+            <span class="temp-unit">{{weather.Temperature.Metric.Unit}}</span>
+          </h1>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-5 details-wrapper" *ngFor="let weather of currentWeather">
+      <div class="row text-center big-icon">
+        <img src='../../assets/weather-icons/{{weather.WeatherIcon}}-s.png' alt="icon" width="150">
+      </div>
+      <div class="row text-center">
+        <div class="col-sm-12">
+          <h2 class="temp-text">{{weather.WeatherText}}</h2>
+        </div>
+      </div>
+      <div class="next-hours-wrapper">
+        <div class="row hourly" *ngFor="let hour of todaysWeather">
+          <div class="col-sm-4 text-center time">
+            <h5>{{hour.DateTime | date: 'shortTime'}}</h5>
+          </div>
+          <div class="col-sm-2 text-center temp">
+            <h5>{{hour.Temperature.Value}}&deg; {{hour.Temperature.Metric}}</h5>
+          </div>
+          <div class="col-sm-6 text-center">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <img src='../../assets/weather-icons/{{hour.WeatherIcon}}-s.png' alt="icon" width="30">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <span>{{hour.IconPhrase}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
