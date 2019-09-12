@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, tap, map, switchMap } from 'rxjs/operators';
 import { SearchAutocompleteService } from '../search-autocomplete.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-city',
@@ -12,8 +13,9 @@ export class SearchCityComponent {
   model: any;
   searching = false;
   searchFailed = false;
+  city: string;
 
-  constructor(private service: SearchAutocompleteService) {}
+  constructor(private service: SearchAutocompleteService, private router: Router) {}
 
   search = (text$: Observable<string>) =>
     text$.pipe(
@@ -30,5 +32,10 @@ export class SearchCityComponent {
       ),
       tap(() => this.searching = false)
     )
+
+  showCityDetails(): void {
+    const searchInput: string = (document.querySelector('.search-input') as HTMLInputElement).value;
+    this.router.navigateByUrl(`/detail/${searchInput}`);
+  }
 
 }

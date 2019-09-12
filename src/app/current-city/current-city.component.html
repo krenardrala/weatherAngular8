@@ -3,7 +3,9 @@
     <div class="col-sm-7 basic-info-wrapper">
       <div class="row text-right basic-city-details">
         <div class="col-sm-12">
-          <h2>{{currentCity.EnglishName}}</h2>
+          <a routerLink="/detail/{{currentCity.EnglishName}}">
+            <h2>{{currentCity.EnglishName}}</h2>
+          </a>
           <h3>{{currentCity.Country.EnglishName}}</h3>
         </div>
       </div>

@@ -8,12 +8,16 @@ import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import { CurrentCityComponent } from './current-city/current-city.component';
 import { SearchCityComponent } from './search-city/search-city.component';
+import { CityDetailsComponent } from './city-details/city-details.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CurrentCityComponent,
-    SearchCityComponent
+    SearchCityComponent,
+    CityDetailsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
