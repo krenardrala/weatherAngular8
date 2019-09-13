@@ -43,10 +43,8 @@ export class CurrentCityComponent implements OnInit {
   getCurrentWeather(lat: number, long: number): void {
     this.currentCityWeather.getCityByGeoLocation(lat, long)
       .subscribe(currentCity => {
-        console.log('Success! ', currentCity);
         this.currentCity = currentCity;
         this.currentCityWeather.getCurrentWeather(currentCity.EnglishName, currentCity.Key, false).subscribe(currentWeather => {
-          console.log('Weather for: ', currentCity.EnglishName, currentWeather);
           this.currentWeather = currentWeather;
           this.currentCityWeather.getCityImage(currentCity.EnglishName)
             .subscribe(city => {

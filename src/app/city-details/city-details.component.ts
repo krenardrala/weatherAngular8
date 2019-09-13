@@ -34,17 +34,13 @@ export class CityDetailsComponent implements OnInit {
     if (this.city) {
       this.getWeatherDetails();
     }
-    /*this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);*/
   }
 
   getWeatherDetails(): void {
     this.currentCityWeather.getCityByName(this.city)
       .subscribe(currentCity => {
-        console.log('Success! ', currentCity);
         this.currentCity = currentCity[0];
         this.currentCityWeather.getCurrentWeather(currentCity[0].EnglishName, currentCity[0].Key, true).subscribe(currentWeather => {
-          console.log('Weather for: ', currentCity[0].EnglishName, currentWeather);
           this.currentWeather = currentWeather[0];
           this.currentCityWeather.getCityImage(currentCity[0].EnglishName)
             .subscribe(city => {
