@@ -19,7 +19,10 @@ export class SearchAutocompleteService {
     })
   };
 
-  /* GET hero by id. Will 404 if id not found */
+  /**
+   * GET list of cities by string
+   * @param searchText - city name
+   */
   getCities(searchText: string): Observable<any> {
     const url = `${this.apiUrl}locations/v1/cities//autocomplete?apikey=${this.apiKey}&q=${searchText}`;
     return this.http.get<any>(url).pipe(
