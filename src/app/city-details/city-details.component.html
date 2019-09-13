@@ -1,2 +1,138 @@
-<h1>Welcome to {{city}}</h1>
-<button (click)="goBack()">go back</button>
+<div class="city-details-component">
+  <div class="back" (click)="goBack()">
+    <div class="row">
+      <div class="col-sm-2">
+        <img src="../../assets/img/left-arrow.png" alt="Back" width="32">
+      </div>
+      <div class="col-sm-8">
+        <h4>Go Back</h4>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-sm-3 temperature-details-wrapper" *ngIf="currentCity && currentWeather && todaysWeather">
+      <div class="row title">
+        <div class="col-sm-12 text-center">
+          <h4>LOCAL WEATHER REPORT</h4>
+        </div>
+      </div>
+      <div class="row main-wrapper">
+        <div class="col-sm-12 text-center">
+          <h5>Your Local Weather</h5>
+          <h4 class="city-name">{{currentCity.EnglishName}}, {{currentCity.Country.EnglishName}}, {{currentCity.Region.EnglishName}}</h4>
+          <h1>{{currentWeather.Temperature.Metric.Value}}&deg; {{currentWeather.Temperature.Metric.Unit}}</h1>
+          <img src="../../assets/weather-icons/{{currentWeather.WeatherIcon}}-s.png" alt="Icon" width="75">
+          <h4>{{currentWeather.WeatherText}}</h4>
+        </div>
+      </div>
+      <div class="row next-hours-wrapper">
+        <div class="col-sm-4 text-center" *ngFor="let hour of todaysWeather">
+          <img src='../../assets/weather-icons/{{hour.WeatherIcon}}-s.png' alt="icon" width="30">
+          <p>{{hour.DateTime | date: 'shortTime'}}</p>
+          <p>{{hour.Temperature.Value}}&deg; {{hour.Temperature.Metric}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-5 next-days-image-wrapper" *ngIf="currentCity">
+      <div class="row image-wrapper" (click)="showModal()">
+        <div class="col-sm-12">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row title">
+            <div class="col-sm-8">
+              <h3>Next Days</h3>
+            </div>
+          </div>
+          <div class="row next-days-wrapper">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-3">
+                  <h6 class="min">Min.</h6>
+                </div>
+                <div class="col-sm-3">
+                  <h6 class="max">Max.</h6>
+                </div>
+              </div>
+              <div class="row" *ngFor="let day of nextDaysWeather.DailyForecasts">
+                <div class="col-sm-6">
+                  <h6>{{day.Date | date: 'EEEE'}}</h6>
+                </div>
+                <div class="col-sm-3">
+                  <h6>{{day.Temperature.Minimum.Value}}&deg; {{day.Temperature.Minimum.Unit}}</h6>
+                </div>
+                <div class="col-sm-3">
+                  <h6>{{day.Temperature.Maximum.Value}}&deg; {{day.Temperature.Maximum.Unit}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3 additional-info-wrapper" *ngIf="currentWeather && nextDaysWeather">
+      <div class="row current-date-time">
+        <div class="col-sm-12 text-center">
+          <h1>{{currentDate | date: 'shortTime'}}</h1>
+          <h4>{{currentDate | date}}</h4>
+        </div>
+      </div>
+      <div class="row wind-info">
+        <div class="col-sm-12 text-center">
+          <div class="row">
+            <div class="col-sm-8">
+              <p>Pressure</p>
+            </div>
+            <div class="col-sm-4">
+              <p>{{currentWeather.Pressure.Metric.Value}}{{currentWeather.Pressure.Metric.Unit}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              <p>Wind Speed</p>
+            </div>
+            <div class="col-sm-4">
+              <p>{{currentWeather.Wind.Speed.Metric.Value}}{{currentWeather.Wind.Speed.Metric.Unit}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              <p>Visibility</p>
+            </div>
+            <div class="col-sm-4">
+              <p>{{currentWeather.Visibility.Metric.Value}}{{currentWeather.Visibility.Metric.Unit}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              <p>Real Feel Temperature</p>
+            </div>
+            <div class="col-sm-4">
+              <p>{{currentWeather.RealFeelTemperature.Metric.Value}}{{currentWeather.RealFeelTemperature.Metric.Unit}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row temp-phrase">
+        <div class="col-sm-12 text-center">
+          <img src='../../assets/weather-icons/{{nextDaysWeather.DailyForecasts[0].Day.Icon}}-s.png' alt="icon">
+          <h5>{{nextDaysWeather.DailyForecasts[0].Day.LongPhrase}}</h5>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
+  </div>
+
+</div>

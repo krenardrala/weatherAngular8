@@ -12,6 +12,7 @@ export class CurrentCityWeatherService {
   private apiUrl = 'http://dataservice.accuweather.com/';
   private apiKey = 'E0HZ33WBbHYpRtGkv3cCTHuG4wOT1dov';
   //CN5chK4WAKWExtukoxoTPP3YLNX2qgy2
+  //E0HZ33WBbHYpRtGkv3cCTHuG4wOT1dov
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -27,8 +28,16 @@ export class CurrentCityWeatherService {
     );
   }
 
-  getCurrentWeather(city: string, key: string): Observable<any> {
-    const url = `${this.apiUrl}currentconditions/v1//${key}?apikey=${this.apiKey}&metric=true`;
+  getCityByName(city: string): Observable<any> {
+    const url = `${this.apiUrl}locations/v1/cities/search?apikey=${this.apiKey}&q=${city}`;
+    return this.http.get<any>(url).pipe(
+      tap(_ => console.log(`fetched city`)),
+      catchError(this.handleError<any>(`error fetch city`))
+    );
+  }
+
+  getCurrentWeather(city: string, key: string, details: boolean = false): Observable<any> {
+    const url = `${this.apiUrl}currentconditions/v1/${key}?apikey=${this.apiKey}&metric=true&details=${details}`;
     return this.http.get<any>(url).pipe(
       tap(_ => console.log(`fetched weather`)),
       catchError(this.handleError<any>(`error fetch city`))
@@ -43,10 +52,18 @@ export class CurrentCityWeatherService {
     );
   }
 
-  getWeatherForToday(city: string, key: number): Observable<any> {
-    const url = `${this.apiUrl}forecasts/v1/hourly/12hour/${key}?apikey=${this.apiKey}&metric=true`;
+  getWeatherForToday(city: string, key: number, details: boolean = false): Observable<any> {
+    const url = `${this.apiUrl}forecasts/v1/hourly/12hour/${key}?apikey=${this.apiKey}&metric=true&details=${details}`;
     return this.http.get<any>(url).pipe(
       tap(_ => console.log(`fetched todays temperature`)),
+      catchError(this.handleError<any>(`error fetch temperature`))
+    );
+  }
+
+  getWeatherForNextDays(city: string, key: number, details: boolean = false): Observable<any> {
+    const url = `${this.apiUrl}forecasts/v1/daily/5day/${key}?apikey=${this.apiKey}&metric=true&details=${details}`;
+    return this.http.get<any>(url).pipe(
+      tap(_ => console.log(`fetched next days temperature`)),
       catchError(this.handleError<any>(`error fetch temperature`))
     );
   }

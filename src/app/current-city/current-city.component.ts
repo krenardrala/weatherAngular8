@@ -45,7 +45,7 @@ export class CurrentCityComponent implements OnInit {
       .subscribe(currentCity => {
         console.log('Success! ', currentCity);
         this.currentCity = currentCity;
-        this.currentCityWeather.getCurrentWeather(currentCity.EnglishName, currentCity.Key).subscribe(currentWeather => {
+        this.currentCityWeather.getCurrentWeather(currentCity.EnglishName, currentCity.Key, false).subscribe(currentWeather => {
           console.log('Weather for: ', currentCity.EnglishName, currentWeather);
           this.currentWeather = currentWeather;
           this.currentCityWeather.getCityImage(currentCity.EnglishName)
@@ -54,7 +54,7 @@ export class CurrentCityComponent implements OnInit {
               this.backgroundImage = city.hits[0].largeImageURL;
               wrapper.setAttribute('style', `background-image: url("` + this.backgroundImage + `")`);
             });
-          this.currentCityWeather.getWeatherForToday(currentCity.EnglishName, currentCity.Key)
+          this.currentCityWeather.getWeatherForToday(currentCity.EnglishName, currentCity.Key, false)
             .subscribe(todaysWether => {
               this.todaysWeather = todaysWether.filter((item, index) => index < 4);
             });
