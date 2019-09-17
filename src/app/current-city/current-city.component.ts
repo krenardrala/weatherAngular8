@@ -12,6 +12,7 @@ export class CurrentCityComponent implements OnInit {
   currentCity: any[];
   currentDate: number = Date.now();
   backgroundImage: string;
+  loading: boolean;
 
   constructor(private currentCityWeather: CurrentCityWeatherService) { }
 
@@ -41,6 +42,7 @@ export class CurrentCityComponent implements OnInit {
   }
 
   getCurrentWeather(lat: number, long: number): void {
+    this.loading = true;
     this.currentCityWeather.getCityByGeoLocation(lat, long)
       .subscribe(currentCity => {
         this.currentCity = currentCity;
@@ -55,6 +57,7 @@ export class CurrentCityComponent implements OnInit {
           this.currentCityWeather.getWeatherForToday(currentCity.EnglishName, currentCity.Key, false)
             .subscribe(todaysWether => {
               this.todaysWeather = todaysWether.filter((item, index) => index < 4);
+              this.loading = false;
             });
         });
       });

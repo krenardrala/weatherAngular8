@@ -16,6 +16,7 @@ export class CityDetailsComponent implements OnInit {
   currentDate: number = Date.now();
   backgroundImage: string;
   nextDaysWeather: any[];
+  loading: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,15 +29,14 @@ export class CityDetailsComponent implements OnInit {
   }
 
   getCity(): void {
-    const city: string = this.route.snapshot.paramMap.get('city');
-    this.city = city;
-    console.log('city name: ', city);
+    this.city = this.route.snapshot.paramMap.get('city');
     if (this.city) {
       this.getWeatherDetails();
     }
   }
 
   getWeatherDetails(): void {
+    this.loading = true;
     this.currentCityWeather.getCityByName(this.city)
       .subscribe(currentCity => {
         this.currentCity = currentCity[0];
@@ -55,6 +55,7 @@ export class CityDetailsComponent implements OnInit {
           this.currentCityWeather.getWeatherForNextDays(currentCity[0].EnglishName, currentCity[0].Key, true)
             .subscribe(nextDaysWeather => {
               this.nextDaysWeather = nextDaysWeather;
+              this.loading = false;
           });
         });
       });

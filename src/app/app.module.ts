@@ -10,6 +10,7 @@ import { CurrentCityComponent } from './current-city/current-city.component';
 import { SearchCityComponent } from './search-city/search-city.component';
 import { CityDetailsComponent } from './city-details/city-details.component';
 import { HomeComponent } from './home/home.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HomeComponent } from './home/home.component';
     CurrentCityComponent,
     SearchCityComponent,
     CityDetailsComponent,
-    HomeComponent
+    HomeComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
