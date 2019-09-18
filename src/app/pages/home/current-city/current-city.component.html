@@ -1,4 +1,4 @@
-<div class="current-city-component-wrapper" *ngIf="currentWeather">
+<div class="current-city-component-wrapper" *ngIf="currentWeather && !errors.length">
   <div class="row main-row">
     <div class="col-sm-7 basic-info-wrapper">
       <div class="row text-right basic-city-details">
@@ -59,3 +59,11 @@
 </div>
 
 <app-spinner *ngIf="loading"></app-spinner>
+
+<p *ngFor="let error of errors">
+  <ngb-alert type="danger">
+    <b>{{ error.Code }}</b>
+    <br>
+    <span>{{ error.Message }}</span>
+  </ngb-alert>
+</p>

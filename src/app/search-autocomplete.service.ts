@@ -10,7 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 export class SearchAutocompleteService {
   // URL to web api
   private apiUrl = 'http://dataservice.accuweather.com/';
-  private apiKey = 'E0HZ33WBbHYpRtGkv3cCTHuG4wOT1dov';
+  private apiKey = 'CN5chK4WAKWExtukoxoTPP3YLNX2qgy2';
   //CN5chK4WAKWExtukoxoTPP3YLNX2qgy2
   //E0HZ33WBbHYpRtGkv3cCTHuG4wOT1dov
   httpOptions = {

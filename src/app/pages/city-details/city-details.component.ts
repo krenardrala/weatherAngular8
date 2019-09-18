@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { CurrentCityWeatherService } from '../current-city-weather.service';
+import { CurrentCityWeatherService } from '../../current-city-weather.service';
 
 @Component({
   selector: 'app-city-details',

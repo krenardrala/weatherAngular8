@@ -6,11 +6,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
-import { CurrentCityComponent } from './current-city/current-city.component';
-import { SearchCityComponent } from './search-city/search-city.component';
-import { CityDetailsComponent } from './city-details/city-details.component';
-import { HomeComponent } from './home/home.component';
-import { SpinnerComponent } from './spinner/spinner.component';
+import { CurrentCityComponent } from './pages/home/current-city/current-city.component';
+import { SearchCityComponent } from './pages/home/search-city/search-city.component';
+import { CityDetailsComponent } from './pages/city-details/city-details.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 
 @NgModule({
   declarations: [

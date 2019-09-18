@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, tap, map, switchMap } from 'rxjs/operators';
-import { SearchAutocompleteService } from '../search-autocomplete.service';
+import { SearchAutocompleteService } from '../../../search-autocomplete.service';
 import { Router } from '@angular/router';
 
 @Component({
