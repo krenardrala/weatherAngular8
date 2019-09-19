@@ -20,6 +20,8 @@ export class CityDetailsComponent implements OnInit, OnDestroy {
   nextDaysWeather: any[];
   loading: boolean;
   subsOb: Subscription;
+  subsOb1: Subscription;
+  cityData: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,11 +30,16 @@ export class CityDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.subsOb1 = this.currentCityWeather.currentData.subscribe(data => {
+      this.cityData = data;
+      console.log(data);
+    });
     this.getCity();
   }
 
   ngOnDestroy(): void {
     this.subsOb.unsubscribe();
+    this.subsOb1.unsubscribe();
   }
 
   getCity(): void {

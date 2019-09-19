@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -10,9 +10,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class CurrentCityWeatherService {
   // URL to web api
   private apiUrl = 'http://dataservice.accuweather.com/';
-  private apiKey = 'CN5chK4WAKWExtukoxoTPP3YLNX2qgy21';
+  private apiKey = 'CN5chK4WAKWExtukoxoTPP3YLNX2qgy2';
   //CN5chK4WAKWExtukoxoTPP3YLNX2qgy2
   //E0HZ33WBbHYpRtGkv3cCTHuG4wOT1dov
+
+  private dataSource = new BehaviorSubject([]);
+  currentData = this.dataSource.asObservable();
 
   /**
    * GET City Info by Name
@@ -103,6 +106,10 @@ export class CurrentCityWeatherService {
         return throwError(err.error);
       })
     );
+  }
+
+  handleCityData(data: any) {
+    this.dataSource.next(data);
   }
 
   constructor(
