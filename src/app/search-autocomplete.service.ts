@@ -13,11 +13,6 @@ export class SearchAutocompleteService {
   private apiKey = 'CN5chK4WAKWExtukoxoTPP3YLNX2qgy2';
   //CN5chK4WAKWExtukoxoTPP3YLNX2qgy2
   //E0HZ33WBbHYpRtGkv3cCTHuG4wOT1dov
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
 
   /**
    * GET list of cities by string

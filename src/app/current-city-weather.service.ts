@@ -10,14 +10,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class CurrentCityWeatherService {
   // URL to web api
   private apiUrl = 'http://dataservice.accuweather.com/';
-  private apiKey = 'CN5chK4WAKWExtukoxoTPP3YLNX2qgy2';
+  private apiKey = 'CN5chK4WAKWExtukoxoTPP3YLNX2qgy21';
   //CN5chK4WAKWExtukoxoTPP3YLNX2qgy2
   //E0HZ33WBbHYpRtGkv3cCTHuG4wOT1dov
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
 
   /**
    * GET City Info by Name

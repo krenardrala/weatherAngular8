@@ -1,2 +1,11 @@
-<app-search-city></app-search-city>
-<app-current-city></app-current-city>
+<p *ngFor="let error of errors" class="custom-alert">
+  <ngb-alert type="danger">
+    <b>{{ error.Code }}</b>
+    <br>
+    <span>{{ error.Message }}</span>
+  </ngb-alert>
+</p>
+<div *ngIf="!errors.length">
+  <app-search-city></app-search-city>
+  <app-current-city (errorEvent)="receiveErrors($event)"></app-current-city>
+</div>

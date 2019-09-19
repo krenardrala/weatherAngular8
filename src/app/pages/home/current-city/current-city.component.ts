@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CurrentCityWeatherService } from '../../../current-city-weather.service';
 
 @Component({
@@ -14,6 +14,8 @@ export class CurrentCityComponent implements OnInit {
   backgroundImage: string;
   loading: boolean;
   errors: any[];
+
+  @Output() errorEvent = new EventEmitter<any>();
 
   constructor(private currentCityWeather: CurrentCityWeatherService) {
     this.errors = [];
@@ -75,6 +77,7 @@ export class CurrentCityComponent implements OnInit {
           });
       }, error => {
         this.errors.push(error);
+        this.errorEvent.emit(this.errors);
         this.loading = false;
       });
   }
