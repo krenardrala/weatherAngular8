@@ -42,7 +42,9 @@ export class CurrentCityWeatherService {
     const url = `${this.apiUrl}locations/v1/cities/search?apikey=${this.apiKey}&q=${city}`;
     return this.http.get<any>(url).pipe(
       tap(_ => console.log(`fetched city by name`)),
-      catchError(this.handleError<any>(`error fetching city by name`))
+      catchError(err => {
+        return throwError(err.error);
+      })
     );
   }
 
@@ -56,7 +58,9 @@ export class CurrentCityWeatherService {
     const url = `${this.apiUrl}currentconditions/v1/${key}?apikey=${this.apiKey}&metric=true&details=${details}`;
     return this.http.get<any>(url).pipe(
       tap(_ => console.log(`fetched current weather`)),
-      catchError(this.handleError<any>(`error fetching current weather`))
+      catchError(err => {
+        return throwError(err.error);
+      })
     );
   }
 
@@ -68,7 +72,9 @@ export class CurrentCityWeatherService {
     const url = `https://pixabay.com/api/?key=13591826-c8ebe304a1d5d65dac71bb9a4&q=${city}&image_type=photo`;
     return this.http.get<any>(url).pipe(
       tap(_ => console.log(`fetched image`)),
-      catchError(this.handleError<any>(`error fetching image`))
+      catchError(err => {
+        return throwError(err.error);
+      })
     );
   }
 
@@ -82,7 +88,9 @@ export class CurrentCityWeatherService {
     const url = `${this.apiUrl}forecasts/v1/hourly/12hour/${key}?apikey=${this.apiKey}&metric=true&details=${details}`;
     return this.http.get<any>(url).pipe(
       tap(_ => console.log(`fetched todays weather`)),
-      catchError(this.handleError<any>(`error fetching todays weather`))
+      catchError(err => {
+        return throwError(err.error);
+      })
     );
   }
 
@@ -96,24 +104,10 @@ export class CurrentCityWeatherService {
     const url = `${this.apiUrl}forecasts/v1/daily/5day/${key}?apikey=${this.apiKey}&metric=true&details=${details}`;
     return this.http.get<any>(url).pipe(
       tap(_ => console.log(`fetched next days weather`)),
-      catchError(this.handleError<any>(`error fetching weather for next days`))
+      catchError(err => {
+        return throwError(err.error);
+      })
     );
-  }
-
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
   }
 
   constructor(
